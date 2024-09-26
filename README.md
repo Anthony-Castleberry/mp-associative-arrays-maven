@@ -1,7 +1,9 @@
 Associative Arrays
 ==================
+@author Anthony Castleberry
 
-Starter code for a CSC-207 project on associative arrays.
+A project for CSC-207 2024Fa.
 
-_Students must replace the contents of this file with appropriate
-contents, including class, author, date, and URL._
+Create a Dicitonary ADT using an associative array
+
+https://github.com/Anthony-Castleberry/mp-associative-arrays-maven.git
