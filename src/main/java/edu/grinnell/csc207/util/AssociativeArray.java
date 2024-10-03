@@ -64,16 +64,14 @@ public class AssociativeArray<K, V> {
    */
   public AssociativeArray<K, V> clone() {
     AssociativeArray<K, V> newarray = new AssociativeArray<K, V>();
-
-      for (int i = 0; i < size; i++) {
-        try {
-          newarray.set(this.pairs[DEFAULT_CAPACITY + i].key, this.pairs[DEFAULT_CAPACITY + i].val);
-        } catch (NullKeyException e) {
-          return newarray;
-        } // try/catch
-      } // for
-      return newarray;
- 
+    for (int i = 0; i < size; i++) {
+      try {
+        newarray.set(this.pairs[DEFAULT_CAPACITY + i].key, this.pairs[DEFAULT_CAPACITY + i].val);
+      } catch (NullKeyException e) {
+        return newarray;
+      } // try/catch
+    } // for
+    return newarray;
   } // clone()
 
   /**
@@ -83,7 +81,7 @@ public class AssociativeArray<K, V> {
    */
   public String toString() {
     String result = "{";
-    for (int i = 0; i < size; i ++) {
+    for (int i = 0; i < size; i++) {
       int index = DEFAULT_CAPACITY + i;
       result = result.concat(this.pairs[index].key.toString());
       result = result.concat(":");
@@ -93,7 +91,7 @@ public class AssociativeArray<K, V> {
         result = result.concat(this.pairs[index].val.toString());
       } // if
       if (size - i > 1) {
-      result = result.concat(", ");
+        result = result.concat(", ");
       } // if
     } // for
     result = result.concat("}");
@@ -119,14 +117,16 @@ public class AssociativeArray<K, V> {
   public void set(K key, V value) throws NullKeyException {
     if (key == null) {
       throw new NullKeyException();
-    } else try {
-      int index = this.find(key);
-      this.pairs[index] = new KVPair<K, V>(key, value);
-    } catch (KeyNotFoundException e) {
-      this.pairs = Arrays.copyOf(this.pairs, this.pairs.length + 1);
-      this.pairs[this.pairs.length - 1] = new KVPair<K, V>(key, value);
-      size++;
-    }
+    } else {
+      try {
+        int index = this.find(key);
+        this.pairs[index] = new KVPair<K, V>(key, value);
+      } catch (KeyNotFoundException e) {
+        this.pairs = Arrays.copyOf(this.pairs, this.pairs.length + 1);
+        this.pairs[this.pairs.length - 1] = new KVPair<K, V>(key, value);
+        size++;
+      } // try/catch
+    } // if
   } // set(K,V)
 
   /**
@@ -223,7 +223,7 @@ public class AssociativeArray<K, V> {
         return i;
       } // if
     } // for
-    throw new KeyNotFoundException(); 
+    throw new KeyNotFoundException();
   } // find(K)
 
 } // class AssociativeArray
