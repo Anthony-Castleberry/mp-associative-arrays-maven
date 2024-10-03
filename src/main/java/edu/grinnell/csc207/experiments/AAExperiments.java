@@ -105,7 +105,7 @@ public class AAExperiments {
     set(pen, strings2strings, "k", "key");
     hasKey(pen, strings2strings, "k");
     get(pen, strings2strings, "k");
-
+    pen.println(strings2strings.toString());
     // What happens if we try a different key?
     hasKey(pen, strings2strings, "q");
     get(pen, strings2strings, "q");
